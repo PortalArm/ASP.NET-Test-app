@@ -37,15 +37,18 @@ namespace ASPMVC.Controllers
             return RedirectToAction("Details", new { id = u.Id });
         }
 
-        public ActionResult Remove(int id)
+        public ActionResult Remove(int? id)
         {
-            _repo.Remove(id);
+            if(id != null)
+                _repo.Remove(id.Value);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            var model =  _repo.GetById(id);
+            if (id == null)
+                return RedirectToAction("Index");
+            var model =  _repo.GetById(id.Value);
             return View(model);
         }
 
