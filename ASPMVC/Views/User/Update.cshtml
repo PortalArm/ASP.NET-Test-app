@@ -1,0 +1,13 @@
+﻿@model ASPMVC.Models.User
+@{
+    ViewBag.Title = "Update";
+}
+<h2> hoba</h2>
+@using (Html.BeginForm("Update", "User"))
+{
+<div class="row"><div class="col-sm-2">Login</div>@Html.EditorFor(u => u.Login)</div>
+<div class="row"><div class="col-sm-2">Name</div>@Html.EditorFor(u => u.Name)</div>
+<div class="row"><div class="col-sm-2">Email</div>@Html.EditorFor(u => u.Email)</div>
+<div class="row"><div class="col-sm-2">Password</div>@Html.EditorFor(u => u.Password)</div>
+<input value="Обновить" type="submit" />
+}

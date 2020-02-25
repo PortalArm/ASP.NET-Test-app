@@ -1,0 +1,15 @@
+﻿@model ASPMVC.Models.UserListViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<h2>All users</h2>
+@foreach (var item in Model.Users)
+{
+<div class="row">
+    <div class="col-sm-3">@item.Name</div>
+    <div class="col-sm-4">@item.Email</div>
+    <div class="col-sm-2">@Html.ActionLink("Обновить", "Update", new { id = item.Id })</div>
+    <div class="col-sm-2">@Html.ActionLink("Удалить", "Remove", new { id = item.Id })</div>
+</div>
+}
+
