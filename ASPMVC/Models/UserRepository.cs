@@ -8,8 +8,6 @@ namespace ASPMVC.Models
 {
     public class UserRepository
     {
-
-        private int _count;
         private static List<User> Users { get; set; } = new List<User> {
             new User() { Id = 1, Login = "user1", Name = "Evgeniy", Email = "ab4c@gmail.com", Password = "ha1ha" },
             new User() { Id = 2, Login = "user22", Name = "Not Evgeniy", Email = "a2bc@gmail.com", Password = "ha6ha" },
@@ -19,13 +17,11 @@ namespace ASPMVC.Models
         };
         private static PropertyInfo[] _userProps = typeof(User).GetProperties();
 
-        public UserRepository()
-        {
-            _count = Users.Count + 1;
-        }
+        public int GetSpareId() => Users.Any() ? Users.Last().Id + 1 : 1;
+
         public void Add(User user)
         {
-            user.Id = _count++;
+            user.Id = GetSpareId();//_count++;
             Users.Add(user);
         }
         public User GetById(int id) => Users.FirstOrDefault(u => u.Id == id);
